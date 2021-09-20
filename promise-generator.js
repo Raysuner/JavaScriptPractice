@@ -16,7 +16,7 @@ function * generator() {
 }
 
 
-function run(generator) {
+function co(generator) {
     return new Promise((resolve, reject) => {
         let iterable = generator()
         let gene = iterable.next()
@@ -51,7 +51,7 @@ function run(generator) {
     })
 }
 
-run(generator).then((val) => {
+co(generator).then((val) => {
     console.log(val)
     console.log('generator is done');
 })
