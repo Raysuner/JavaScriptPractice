@@ -1,6 +1,6 @@
 function throttle(fn, ms) {
   let saveArgs, saveThis;
-  let isThrottled = false,
+  let isThrottled = false;
 
   if (isThrottled) {
     saveArgs = arguments;

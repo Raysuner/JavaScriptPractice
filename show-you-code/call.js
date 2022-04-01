@@ -1,9 +1,9 @@
 Function.prototype.call2 = function (obejct, ...args) {
   obejct = obejct || globalThis
   const fn = Symbol()
-  obejct.fn = this
-  const res = obejct.fn(...args)
-  delete obejct.fn
+  obejct[fn] = this
+  const res = obejct[fn](...args)
+  delete obejct[fn]
   return res
 }
 
@@ -33,11 +33,7 @@ Function.prototype.bind3 = function (object, ...outerArgs) {
       const result = this.fn(...bindArgs)
       delete this.fn
       return result
-    } else {
-      const result = object.fn(...bindArgs)
-      return result
-    }
-    delete object.fn
+    } 
   }
   fBound.prototype = Object.create(this.prototype)
   return fBound
@@ -52,7 +48,7 @@ function say(age, job) {
         return this.name + " : " + String(age) + ", " + job
     }
     else {
-        console.log("say function called, but the arguments is empty")
+        return "say function called, but the arguments is empty"
     }
 }
 
@@ -62,7 +58,7 @@ console.log(say.call2(user, 18, "Software Engineer"))
 console.log(say.apply2(null))
 console.log(say.apply2(user, [18, "Software Engineer"]))
 
-console.log(say.bind3(user, "hello")("world"))
-const con = say.bind3(user)
-const p = new con("hello", "world")
-console.log(p)
+// console.log(say.bind3(user, "hello")("world"))
+// const con = say.bind3(user)
+// const p = new con("hello", "world")
+// console.log(p)

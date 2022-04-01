@@ -1,8 +1,6 @@
 function setTimeout2(fn, ms, ...args) {
-  const id = setInterval(() => {
+  setInterval(() => {
     fn(...args)
-    clearInterval(id)
+    clearInterval(timeId)
   }, ms)
 }
-
-setTimeout2(console.log, 1000, "hello, world")
