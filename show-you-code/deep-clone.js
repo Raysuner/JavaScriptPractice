@@ -1,5 +1,5 @@
 function deepClone(obj, map = new WeakMap()) {
-  if (type obj !== "object") {
+  if (typeof obj !== "object") {
     return obj
   }
 
