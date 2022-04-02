@@ -1,31 +1,24 @@
+// 下个任务必须等待上个任务执行完才执行，串行执行
 class TaskQueue {
   constructor() {
-    this.tasks = [];
-    this.taskRunning = false;
-  }
-
-  createNext() {
-    var called = false;
-    return () => {
-      if (called) return;
-      called = true;
-
-      if (this.tasks.length) {
-        var task = this.tasks.shift();
-        task(this.createNext());
-      } else {
-        this.taskRunning = false;
-      }
-    };
+    this.tasks = []
+    this.isRunning = false
   }
 
   addTask(taskFunc) {
-    if (this.taskRunning) {
-      this.tasks.push(taskFunc);
+    if (this.isRunning) {
+      this.tasks.push(taskFunc)
     } else {
-      this.taskRunning = true;
-      taskFunc(this.createNext());
+      this.isRunning = true
+      const nextFunc = () => {
+        if (this.tasks.length) {
+          const task = this.tasks.shift()
+          task(nextFunc)
+        } else {
+          this.isRunning = false
+        }
+      }
+      taskFunc(nextFunc)
     }
-    return this;
   }
 }

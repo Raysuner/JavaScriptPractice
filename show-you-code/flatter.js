@@ -1,10 +1,10 @@
-function flatten(array) {
+function flat(array) {
   return array.reduce((accmulator, item) => {
     return Array.isArray(item)
-      ? accmulator.concat(flatten(item))
+      ? accmulator.concat(flat(item))
       : accmulator.concat(item);
   }, []);
 }
 
-const res = flatten([1, [2, [3], [[4]]]]);
+const res = flat([1, [2, [3], [[4]]]]);
 console.log("res", res);

@@ -74,5 +74,5 @@ function insertSort(array) {
 const arr = [1, 4, 2, 7, 3, 8, 5, 9, 6];
 // bubbleSort3(arr)
 // selectSort(arr)
-insertSort(arr);
+// insertSort(arr);
 console.log(arr);
