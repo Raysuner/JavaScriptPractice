@@ -1,10 +1,10 @@
 function instanceof1(obj, constructor) {
   while (obj) {
-    const proto = Object.getPrototypeOf(obj)
+    const proto = Object.getPrototypeOf(obj);
     if (proto === constructor.prototype) {
-      return true
+      return true;
     }
-    obj = proto
+    obj = proto;
   }
-  return false
+  return false;
 }

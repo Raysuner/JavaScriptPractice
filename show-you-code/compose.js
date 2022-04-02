@@ -1,6 +1,10 @@
 function compose(...outerArgs) {
-  return outerArgs.reduce((pre, cur) => (...innerArgs) => pre(cur(...innerArgs)))
-} 
+  return outerArgs.reduce(
+    (pre, cur) =>
+      (...innerArgs) =>
+        pre(cur(...innerArgs))
+  );
+}
 
 function fn1(x) {
   return x + 1;
@@ -16,4 +20,3 @@ function fn4(x) {
 }
 const a = compose(fn1, fn2, fn3, fn4);
 console.log(a(1)); // 1+4+3+2+1=11
-

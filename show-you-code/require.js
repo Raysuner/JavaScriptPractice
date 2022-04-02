@@ -63,7 +63,7 @@ function loadAllDeps(moduleName, callBack) {
         //用来判断递归什么时候结束 当前模块所有的依赖都load 之后
         loadAllDeps(dep, () => {
           count++; //每次递归调用都加一次
-          console.log('test', dep)
+          console.log("test", dep);
           if (count == deps.length) {
             //递归结束 调用callback函数
             callBack();

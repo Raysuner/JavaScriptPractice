@@ -4,22 +4,22 @@ function throttle(fn, ms) {
 
   if (isThrottled) {
     saveArgs = arguments;
-    saveThis = this
+    saveThis = this;
     return;
   }
 
-  fn.apply(this, arguments)
-  isThrottled = true
+  fn.apply(this, arguments);
+  isThrottled = true;
 
   function wrapper() {
     isThrottled = false;
     setTimeout(() => {
       if (saveArgs) {
-        wrapper.apply(saveThis, saveArgs)
-        saveArgs = saveThis = null
+        wrapper.apply(saveThis, saveArgs);
+        saveArgs = saveThis = null;
       }
-    }, ms)
+    }, ms);
   }
 
-  return wrapper
+  return wrapper;
 }
