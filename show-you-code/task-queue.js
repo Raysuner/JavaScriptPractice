@@ -20,5 +20,14 @@ class TaskQueue {
       }
       taskFunc(nextFunc)
     }
+    return this
   }
 }
+
+const queue = new TaskQueue()
+queue.addTask(function(next) {
+  console.log(1)
+  setTimeout(next, 3000)
+}).addTask(function(next){
+  console.log(2)
+})
