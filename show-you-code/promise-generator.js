@@ -1,5 +1,5 @@
 function getValue(n, ms = 1000) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve(n);
     }, ms);
@@ -8,7 +8,7 @@ function getValue(n, ms = 1000) {
 
 function* generator() {
   console.log(1);
-  let x = yield getValue(2, 1000);
+  let x = yield getValue(2);
   console.log(x);
   x = yield getValue(3, 2000);
   console.log(x);
@@ -16,7 +16,7 @@ function* generator() {
   console.log(x);
 }
 
-function co(generator) {
+function asyncGenerator(generator) {
   return new Promise((resolve, reject) => {
     let iterable = generator();
     let generated = iterable.next();
@@ -49,4 +49,4 @@ function co(generator) {
   });
 }
 
-co(generator);
+asyncGenerator(generator);

@@ -1,6 +1,7 @@
 function Person(name, age) {
   this.name = name;
   this.age = age;
+  return 1;
 }
 
 function myNew(constructor, ...args) {
@@ -9,9 +10,10 @@ function myNew(constructor, ...args) {
   }
   const obj = Object.create(constructor.prototype);
   const res = constructor.apply(obj, args);
-  if (res) return res;
+  if (res && typeof res === "object") return res;
   else return obj;
 }
 
 const p = myNew(Person, "ztq", 18);
-console.log(p);
+const p1 = new Person("ztq", 18);
+console.log(p, p1);
